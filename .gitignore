@@ -1,4 +1,10 @@
-.data/*
-config/cert.pem
-config/key.pem
-config/index.js
+# Ignoring server data content
+server/.data/carts/*
+server/.data/orders/*
+server/.data/users/*
+server/.data/tokens/*
+
+# Ignoring sensible data
+server/config/cert.pem
+server/config/key.pem
+server/config/index.js
