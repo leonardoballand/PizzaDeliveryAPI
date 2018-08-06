@@ -1,0 +1,4 @@
+.data/*
+config/cert.pem
+config/key.pem
+config/index.js

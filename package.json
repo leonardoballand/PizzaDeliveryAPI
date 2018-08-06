@@ -1,0 +1,11 @@
+{
+  "name": "pizzadeliveryapi",
+  "version": "0.1.0",
+  "description": "Pirple assignment 2",
+  "main": "index.js",
+  "author": "Leonardo BALLAND",
+  "license": "MIT",
+  "repository": {
+    "url": "https://github.com/leonardoballand/PizzaDeliveryAPI.git"
+  }
+}

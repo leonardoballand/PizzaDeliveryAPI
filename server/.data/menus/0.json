@@ -1,0 +1,7 @@
+{
+  "id": 0,
+  "name": "Margarita",
+  "description": "The original italian pizza!",
+  "ingredients": ["cheese", "tomato", "bacon"],
+  "price": 850
+}
