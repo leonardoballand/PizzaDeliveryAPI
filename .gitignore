@@ -1,8 +1,8 @@
 # Ignoring server data content
-server/.data/carts/*
-server/.data/orders/*
-server/.data/users/*
-server/.data/tokens/*
+server/.data/carts/*.json
+server/.data/orders/*.json
+server/.data/users/*.json
+server/.data/tokens/*.json
 
 # Ignoring sensible data
 server/config/cert.pem
