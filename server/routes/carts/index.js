@@ -207,8 +207,13 @@ carts.put = data => {
             .then(tokenData => {
               validateToken(cart.userId, token)
                 .then(() => {
+                  // Add new items to cart items
+                  const updatedItems = [...cart.items, ...items];
+
                   // Get an array of Promises for each cart item
-                  const getItems = items.map(itemId => read("menus", itemId));
+                  const getItems = updatedItems.map(itemId =>
+                    read("menus", itemId)
+                  );
 
                   // Execute each Promise to get the item details
                   // Return each item details to the next Promises
@@ -224,24 +229,29 @@ carts.put = data => {
                       );
                     }, Promise.resolve([]))
                     .then(itemsMenu => {
-                      const total = items.reduce(
-                        (total, item) =>
-                          itemsMenu.find(i => i.id == item).price + total,
+                      // Sum the cart items total
+                      const total = itemsMenu.reduce(
+                        (total, item) => item.price + total,
                         0
                       );
 
+                      // Prepare data to update file with updated items
                       const updatedCart = {
                         ...cart,
-                        items,
+                        items: updatedItems,
                         total,
                         updatedAt: Date.now()
                       };
 
                       update("carts", cartId, updatedCart)
                         .then(() => {
+                          // Resolve with populated cart items
                           resolve({
                             status: 200,
-                            data: updatedCart,
+                            data: {
+                              ...updatedCart,
+                              items: itemsMenu
+                            },
                             message: "Cart has been updated."
                           });
                         })

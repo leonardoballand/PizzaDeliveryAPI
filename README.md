@@ -114,10 +114,32 @@ Cache-Control: no-cache
         "lastName": "BALLAND",
         "email": "balland.leonardo@baleo-it.com",
         "address": "14, Place Morgan 13300 Salon de Provence",
-        "carts": [],
-        "orders": [],
-        "createdAt": 1533558246613,
-        "updatedAt": 1533558246613
+        "carts": [
+            {
+                "id": "lajdr8lb0b",
+                "userId": "balland.leonardo@baleo-it.com",
+                "createdAt": 1533563500347,
+                "updatedAt": 1533563500347,
+                "items": [
+                    0
+                ],
+                "total": 850
+            }
+        ],
+        "orders": [
+            {
+                "id": "ch_1Cw98jIPhQAsTU1kBGeQ5SBh",
+                "amount": 850,
+                "created": 1533563573,
+                "currency": "eur",
+                "description": "Charge for balland.leonardo@baleo-it.com",
+                "paid": true,
+                "status": "succeeded",
+                "userId": "balland.leonardo@baleo-it.com"
+            }
+        ],
+        "createdAt": 1533560422127,
+        "updatedAt": 1533560422127
     },
     "message": "User details has been found."
 }
@@ -435,15 +457,25 @@ Cache-Control: no-cache
 {
     "status": 200,
     "data": {
-        "id": "2gnh24ozmv",
+        "id": "lajdr8lb0b",
         "userId": "balland.leonardo@baleo-it.com",
-        "createdAt": 1533562794365,
-        "updatedAt": 1533563104801,
+        "createdAt": 1533563500347,
+        "updatedAt": 1533653043146,
         "items": [
-            0,
-            1
+            {
+                "id": 1,
+                "name": "Royale",
+                "description": "The most original italian pizza than ever!",
+                "ingredients": [
+                    "cheese",
+                    "tomato",
+                    "bacon",
+                    "apes"
+                ],
+                "price": 920
+            }
         ],
-        "total": 1770
+        "total": 920
     },
     "message": "Cart has been updated."
 }
@@ -548,8 +580,8 @@ You're done!
 - ~~Update user account when a cart is deleted~~
 - ~~Update user account when a new order was created~~
 - ~~Remove any user data (orders, carts, token) when a user account was deleted~~
-- Populate cart items when updating a cart
-- Populate orders and carts when requesting the user account
+- ~~Populate cart items when updating a cart~~
+- ~~Populate orders and carts when requesting the user account~~
 - Replace user email as id with a random id
 - Improve the request handling system to use prettier url (eg: /users/userId)
 - Add a new route to change dynamically the API configuration

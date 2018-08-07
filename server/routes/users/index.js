@@ -25,12 +25,57 @@ users.get = data => {
         .then(user => {
           if (user) {
             validateToken(user.id, token)
-              .then(() => {
-                // @TODO Populate orders and carts
+              .then(async () => {
+                // Populate orders and carts
                 const { password, ...userData } = user;
+                const { orders, carts } = userData;
+
+                // Get an array with all orders promises
+                const getOrdersPromises = orders.map(order =>
+                  read("orders", order)
+                );
+
+                // Get an array with all carts promises
+                const getCartsPromises = carts.map(cart => read("carts", cart));
+
+                // Get orders data
+                const ordersData = await getOrdersPromises.reduce(
+                  (promises, currentPromise) => {
+                    return promises.then(results =>
+                      currentPromise.then(currentResult => [
+                        ...results,
+                        currentResult
+                      ])
+                    );
+                  },
+                  Promise.resolve([]).then(orders => {
+                    return orders;
+                  })
+                );
+
+                // Get carts data
+                const cartsData = await getCartsPromises.reduce(
+                  (promises, currentPromise) => {
+                    return promises.then(results =>
+                      currentPromise.then(currentResult => [
+                        ...results,
+                        currentResult
+                      ])
+                    );
+                  },
+                  Promise.resolve([]).then(carts => {
+                    return carts;
+                  })
+                );
+
+                // Resolve user data with populated orders and carts data
                 resolve({
                   status: 200,
-                  data: userData,
+                  data: {
+                    ...userData,
+                    orders: ordersData,
+                    carts: cartsData
+                  },
                   message: "User details has been found."
                 });
               })
